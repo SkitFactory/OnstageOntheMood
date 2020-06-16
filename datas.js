@@ -1,0 +1,108 @@
+class Data {
+  constructor(arr) {
+    this.currentNode = arr[0];
+    this.currentText = arr[1];
+    this.sel_cnt = arr[2];
+    this.selA_node = arr[3];
+    this.selA_text = arr[4];
+    this.selB_node = arr[5];
+    this.selB_text = arr[6];
+    this.selC_node = arr[7];
+    this.selC_text = arr[8];
+    this.prevNode = arr[9];
+    this.url = arr[10];
+  }
+}
+
+let datas_ori = [
+  [0, '지금\n당신의\n기분은?', 3, 1, '좋아!', 39, '그냥 그래', 70, '별로야', 0, ''], 
+  [1, '조금 더\n디테일하게!', 2, 2, '편안해!', -1, '', 17, '신나!!', 0, ''], 
+  [2, '한번 더\n골라줄래?', 2, 3, '차분해지고 싶어', -1, '', 10, '약간 좋아!', 1, ''], 
+  [3, '약기 구성은?', 2, 4, '풀세션!', -1, '', 7, '기타와\n보컬로\n충분해', 2, ''], 
+  [4, '원하는\n느낌은', 2, 5, '차분', -1, '', 6, '달달', 3, ''], 
+  [5, '92914', 0, -1, '', -1, '', -1, '', 4, 'https://www.youtube.com/watch?v=dVUJN3n4ePk'], 
+  [6, '조정치X박주원', 0, -1, '', -1, '', -1, '', 4, 'https://www.youtube.com/watch?v=TUae5PZPYII'],
+  [7, '여보컬\nvs\n남보컬', 2, 8, '여보컬', -1, '', 9, '남보컬', 3, ''], 
+  [8, '최고은', 0, -1, '', -1, '', -1, '', 7, 'https://www.youtube.com/watch?v=xbVXwLZzfMw'],
+  [9, '10cm', 0, -1, '', -1, '', -1, '', 7, 'https://www.youtube.com/watch?v=OvPfW5wNcro'],
+  [10, '솔로\nvs\n화음', 2, 11, '솔로', -1, '', 14, '화음', 2, ''], 
+  [11, '땡기는건?', 2, 12, '나랑드사이다', -1, '', 13, '아이스티', 10, ''],
+  [12, '정우', 0, -1, '', -1, '', -1, '', 11, 'https://www.youtube.com/watch?v=dOQhvvNHAFk'],
+  [13, '도마', 0, -1, '', -1, '', -1, '', 11, 'https://www.youtube.com/watch?v=zozkdSeG7jY'],
+  [14, '골라!', 2, 15, '맑고 투명', -1, '', 16, '귀여워', 10, ''], 
+  [15, '여유와설빈', 0, -1, '', -1, '', -1, '', 14, 'https://www.youtube.com/watch?v=TwWlPvRgqC8'],
+  [16, '사람또사람', 0, -1, '', -1, '', -1, '', 14, 'https://www.youtube.com/watch?v=zr1eRp4-NT0'],
+  [17, '어떻게 신나?', 3, 18, '그루브\n타고싶어!', 21, '신나게\n뛰고 싶어!', 33, '빵댕이\n흔들어~', 1, ''], 
+  [18, '얼마나?', 2, 19, '적당히?', -1, '', 20, '많이!!', 17, ''], 
+  [19, '김반장', 0, -1, '', -1, '', -1, '', 18, 'https://www.youtube.com/watch?v=A2jzvMPUfOc'],
+  [20, '김간지X하헌진', 0, -1, '', -1, '', -1, '', 18, 'https://www.youtube.com/watch?v=m4EjH69pDMA'],
+  [21, '어떤\n음악이\n좋아?', 3, 22, '사운드에\n압도될래!', 26, '귀에 감기는\n멜로디가\n좋아', 29, '그 사이\n어딘가', 17, ''], 
+  [22, '사운드의\n색깔은?', 3, 23, '유니언잭', 24, '파스텔', 25, '거친파란빛', 21, ''], 
+  [23, 'Bye Bye Badman', 0, -1, '', -1, '', -1, '', 22, 'https://www.youtube.com/watch?v=2f58tLgM0XQ'],
+  [24, '다브다', 0, -1, '', -1, '', -1, '', 22, 'https://www.youtube.com/watch?v=6GzjDUEpHSs'],
+  [25, '새소년', 0, -1, '', -1, '', -1, '', 22, 'https://www.youtube.com/watch?v=HdkSpALG3A4'],
+  [26, '어떻게 신나?', 2, 27, '약간은\n부드럽게', -1, '', 28, '빡세게!!', 21, ''], 
+  [27, '검정치마', 0, -1, '', -1, '', -1, '', 26, 'https://www.youtube.com/watch?v=z6xNeV7_Cpk'],
+  [28, '불독맨션', 0, -1, '', -1, '', -1, '', 26, 'https://www.youtube.com/watch?v=VeAHTQFO-J8'],
+  [29, '좋아하는걸\n골라!', 3, 30, '어쩌면\n발칙한', 31, '약간의\nMotivation?', 32, '땐스땐쓰', 21, ''], 
+  [30, '장기하와얼굴들', 0, -1, '', -1, '', -1, '', 29, 'https://www.youtube.com/watch?v=CDmIw7zEUAc'],
+  [31, '레이브릭스', 0, -1, '', -1, '', -1, '', 29, 'https://www.youtube.com/watch?v=6FyN34oVD-w'],
+  [32, '술탄오브더디스코', 0, -1, '', -1, '', -1, '', 29, 'https://www.youtube.com/watch?v=3lVuCE_9DJo'],
+  [33, '타임머신을\n타볼까?', 3, 34, '지금도 좋아', 35, '90년대로!', 38, '2000년대로!', 17, ''], 
+  [34, '민수', 0, -1, '', -1, '', -1, '', 33, 'https://www.youtube.com/watch?v=ed0CcFcBBMI'],
+  [35, '랩vs보컬', 2, 36, '랩!', -1, '', 37, '보컬', 33, ''], 
+  [36, '기린', 0, -1, '', -1, '', -1, '', 35, 'https://www.youtube.com/watch?v=DIcaBq-oxjk'],
+  [37, '박문치', 0, -1, '', -1, '', -1, '', 35, 'https://www.youtube.com/watch?v=W50T9G-O7gU'],
+  [38, '우자엔쉐인', 0, -1, '', -1, '', -1, '', 33, 'https://www.youtube.com/watch?v=m0HS45AygzM'],
+  [39, '지금\n듣고 싶은\n음악은?', 3, 40, '음악에 흠뻑 젖고 싶어!', 55, '둘 다 아냐', 62, '음악에 발을 담그고 싶어', 0, ''], 
+  [40, '당신의 취향은?', 3, 41, '신나도 좋아', 45, '소울충만!', 52, '빼어난 연주', 39, ''], 
+  [41, '느낌가는대로!', 3, 42, '애절하면서도\n신나는', 43, '달달', 44, '모르겠어요!', 40, ''], 
+  [42, '신현희와 김루트', 0, -1, '', -1, '', -1, '', 41, 'https://www.youtube.com/watch?v=E_YOWmAZAMg'],
+  [43, '원모어찬스', 0, -1, '', -1, '', -1, '', 41, 'https://www.youtube.com/watch?v=nyEYyTtk2kw'],
+  [44, '잔나비', 0, -1, '', -1, '', -1, '', 41, 'https://www.youtube.com/watch?v=FReg_aTZjzY'],
+  [45, '충전할 영혼은?', 3, 46, '어쩌면\n약간의\n우울', 47, '자기애충만!', 48, 'Love\nLove\nLove', 40, ''], 
+  [46, '코드쿤스트', 0, -1, '', -1, '', -1, '', 45, 'https://www.youtube.com/watch?v=d5DDxZMyw6A'],
+  [47, '서사무엘', 0, -1, '', -1, '', -1, '', 45, 'https://www.youtube.com/watch?v=CsGGKZxZlGQ'],
+  [48, '어떤 사랑?', 3, 49, '도도', 50, '50', 51, '달달', 45, ''], 
+  [49, '자이언티', 0, -1, '', -1, '', -1, '', 48, 'https://www.youtube.com/watch?v=RqcoEonwJns'],
+  [50, '딘', 0, -1, '', -1, '', -1, '', 48, 'https://www.youtube.com/watch?v=NE14c5mEUdU'],
+  [51, '이바다', 0, -1, '', -1, '', -1, '', 48, 'https://www.youtube.com/watch?v=GqNmImL-dgw'],
+  [52, '건반\nvs\n베이스', 2, 53, '건반', -1, '', 54, '베이스', 40, ''], 
+  [53, '이진아', 0, -1, '', -1, '', -1, '', 52, 'https://www.youtube.com/watch?v=uYtdpvAY3WM'],
+  [54, '이루리', 0, -1, '', -1, '', -1, '', 52, 'https://www.youtube.com/watch?v=YD5QQLhhCyQ'],
+  [55, '편안한건 어때?', 2, 56, '좋아!', -1, '', 59, '다른건없어?', 39, ''], 
+  [56, '커피는?', 2, 57, '카페라떼', -1, '', 58, '카푸치노', 55, ''], 
+  [57, '백예린', 0, -1, '', -1, '', -1, '', 56, 'https://www.youtube.com/watch?v=IDD5_z3kKCU'],
+  [58, '모트', 0, -1, '', -1, '', -1, '', 56, 'https://www.youtube.com/watch?v=KnsIQFrPWHw'],
+  [59, '좋아하는술?', 2, 60, '와인', -1, '', 61, '맥주', 55, ''], 
+  [60, '스텔라장', 0, -1, '', -1, '', -1, '', 59, 'https://www.youtube.com/watch?v=EVGVJQtwxCY'],
+  [61, 'MAAN', 0, -1, '', -1, '', -1, '', 59, 'https://www.youtube.com/watch?v=W7FyMCAx18Q'],
+  [62, '셋 중 고르기', 3, 63, '잔잔한', 64, '빠져드는\n목소리', 67, '몽환적인', 39, ''], 
+  [63, '짙은', 0, -1, '', -1, '', -1, '', 62, 'https://www.youtube.com/watch?v=9762n5yiiKI'],
+  [64, '고음\nvs\n중저음', 2, 65, '고음', -1, '', 66, '중저음', 62, ''], 
+  [65, '넬', 0, -1, '', -1, '', -1, '', 64, 'https://www.youtube.com/watch?v=83IfZhO4Pd0'],
+  [66, '오존', 0, -1, '', -1, '', -1, '', 64, 'https://www.youtube.com/watch?v=JYpgs_Vq394'],
+  [67, '악기 구성은?', 2, 68, '간결하게!', -1, '', 69, '풀세션!!', 62, ''], 
+  [68, '김사월X김해원', 0, -1, '', -1, '', -1, '', 67, 'https://www.youtube.com/watch?v=dBvPsZ8RaA4'],
+  [69, '혁오', 0, -1, '', -1, '', -1, '', 67, 'https://www.youtube.com/watch?v=1fwceEIn3TI'],
+  [70, '어디에\n더\n가까울까?', 2, 71, '슬퍼', -1, '', 79, '가라앉고 싶어', 0, ''], 
+  [71, '이유는?', 2, 72, '삶에 지쳤어', -1, '', 75, '이별', 70, ''], 
+  [72, '어떤게 필요해?', 2, 73, '위로', -1, '', 74, '원망', 71, ''], 
+  [73, '오왠', 0, -1, '', -1, '', -1, '', 72, 'https://www.youtube.com/watch?v=-wJNm3-WpgM'],
+  [74, '이랑', 0, -1, '', -1, '', -1, '', 72, 'https://www.youtube.com/watch?v=2mrTQhf2O08'],
+  [75, '어떤 감정이야?', 3, 76, '두려움', 77, '담담', 78, '그리움', 71, ''], 
+  [76, '아월', 0, -1, '', -1, '', -1, '', 75, 'https://www.youtube.com/watch?v=my3NCnEGwuk'],
+  [77, '안녕하신가영', 0, -1, '', -1, '', -1, '', 75, 'https://www.youtube.com/watch?v=iovnROyR0zI'],
+  [78, '가을방학', 0, -1, '', -1, '', -1, '', 75, 'https://www.youtube.com/watch?v=fQ4DG0SBH-0'],
+  [79, '이유는?', 3, 80, '지쳤어', 83, '모르겠어', 84, '씁쓸해', 70, ''], 
+  [80, '노래를 들으며', 2, 81, '좀 더\n여기에\n머물래', -1, '', 82, '그래도 딛고\n일어나고 싶어', 79, ''], 
+  [81, '자우림', 0, -1, '', -1, '', -1, '', 80, 'https://www.youtube.com/watch?v=-WGVPYY-Rhg'],
+  [82, '이상은', 0, -1, '', -1, '', -1, '', 80, 'https://www.youtube.com/watch?v=g6Ay8WteZvg'],
+  [83, '빌리어코스티', 0, -1, '', -1, '', -1, '', 79, 'https://www.youtube.com/watch?v=OLYWlWiyD5g'],
+  [84, '어떤게 좋아?', 2, 85, '씁쓸담담', -1, '', 86, '씁쓸절절', 79, ''], 
+  [85, '언니네이발관', 0, -1, '', -1, '', -1, '', 84, 'https://www.youtube.com/watch?v=MYYXLw8jRD0'],
+  [86, '몽니', 0, -1, '', -1, '', -1, '', 84, 'https://www.youtube.com/watch?v=xmvDSF-sO7E']
+];
+
+//  [CN, 'CT', cnt, an, 'at', bn, 'bt', cn, 'ct', pn], 
+//  [7, '', 0, -1, '', -1, '', -1, '', 7],
